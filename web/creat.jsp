@@ -8,7 +8,6 @@
 <%@page import="java.sql.*"%>
 <%@page import="java.lang.*"%>
 <%@page import="javax.servlet.*"%>
-<% Class.forName("org.postgresql.Driver"); %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -57,7 +56,7 @@
 
     }
 %>
-<% int result =0;
+<%
 if(request.getParameter("select") != null){
     response.sendRedirect("index.jsp");
     System.out.println("select");
@@ -66,7 +65,7 @@ if(request.getParameter("select") != null){
 
     if(request.getParameter("creat") !=null) {
         Integer firstid = 1;
-        String firstid1 = new String();
+        String firstid1 ;
         String firstname = new String();
         String firstsurname = new String();
         String firstphone = new String();
@@ -93,21 +92,21 @@ if(request.getParameter("select") != null){
         firstemail = request.getParameter("email");
         }
         PostgreSQLJDBC pos = new PostgreSQLJDBC();
-        result = pos.setPostgreSQLJDBC(firstid,firstname,firstsurname,firstphone,firstadress,firstemail);
+        pos.setPostgreSQLJDBC(firstid,firstname,firstsurname,firstphone,firstadress,firstemail);
     }
 
 
 
 %>
 
-<form name =frmtel action="creat.jsp" method="post">
+<form  action="creat.jsp" method="post">
     <table class="table table-striped">
         <tr>
-            <td> Id:</td>
+            <td>Id:</td>
             <td><input type="text" name="id"></td>
         </tr>
         <tr>
-            <td> Name:</td>
+            <td>Name:</td>
             <td><input type="text" name="name"></td>
         </tr>
         <tr>
